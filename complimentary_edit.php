@@ -129,19 +129,21 @@
           <td>Order Status</td>
           <td><table width="269" border="0" cellpadding="10">
             <tr>
-                <?php  if((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])==strtolower("pending"))) {?> 
+                <?php  if((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])==0)) {?> 
 							<!--<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Pending"><button class="btn btn-revert">Pending</button></a>--> &nbsp;&nbsp;&nbsp;
 							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Cancelled"><button class="btn btn-danger">Revert</button></a>&nbsp;&nbsp;&nbsp;
 							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&service=<?php echo $id;?>&action=Confirmed&gid=<?php echo $booking_details['GID_OPT1']; ?>"><button class="btn btn-success">Confirm GID1</button></a>&nbsp;&nbsp;&nbsp;
                                                         <a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&service=<?php echo $id;?>&action=Confirmed&gid=<?php echo $booking_details['GID_OPT2']; ?>"><button class="btn btn-success">Confirm GID2</button></a>
 
-              <?php }elseif((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])==strtolower("Confirmed")))
+              <?php }elseif((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])== 1))
 					{?>
 							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Cancelled&service=<?php echo $id;?>"><button class="btn btn-danger">Revert</button></a>
 							
-              <?php }else {?>
-				  <td width="54"><?php  if(isset($booking_details['bookingStatus'])) {echo "<b>".$booking_details['bookingStatus']."</b>";}?></td>
-			 <?php }?>
+              <?php }elseif ((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])== 2)){?>
+				  <td width="54"><?php  if(isset($booking_details['bookingStatus'])) {echo "<b>Cancelled By Admin</b>";}?></td>
+			 <?php } else {?>
+                                  <td width="54"><?php  if(isset($booking_details['bookingStatus'])) {echo "<b>Cancelled By User</b>";}?></td>
+                         <?php } ?>
 			  
             </tr>
 <!--            <tr>

@@ -46,48 +46,48 @@
                                     </div>
                                 
          <table class="mws-datatable mws-table">
-	  <a class="mws-stat" href="complimentary.php">
-                    	<!-- Statistic Icon (edit to change icon) -->
+<!--	  <a class="mws-stat" href="complimentary.php">
+                    	 Statistic Icon (edit to change icon) 
                     	<span class="mws-stat-icon icol32-user-red"></span>
                         
-                        <!-- Statistic Content -->
+                         Statistic Content 
                         <span class="mws-stat-content">
                         	<span class="mws-stat-value">EGC</span>
                             <span class="mws-stat-value"> Booking</span>
                         </span>
-         </a>
+         </a>-->
 					
-		<a class="mws-stat" href="paynplay.php">
-                    	<!-- Statistic Icon (edit to change icon) -->
+<!--		<a class="mws-stat" href="paynplay.php">
+                    	 Statistic Icon (edit to change icon) 
                     	<span class="mws-stat-icon icol32-user-gray"></span>
                         
-                        <!-- Statistic Content -->
+                         Statistic Content 
                         <span class="mws-stat-content">
                         	<span class="mws-stat-value">MMG</span>
                             <span class="mws-stat-value"> Booking</span>
                         </span>
-        </a>
+        </a>-->
 		</table>
-		<a class="mws-stat" href="proshop_order.php">
-                    	<!-- Statistic Icon (edit to change icon) -->
+<!--		<a class="mws-stat" href="proshop_order.php">
+                    	 Statistic Icon (edit to change icon) 
                     	<span class="mws-stat-icon icol32-basket-go"></span>
                         
-                        <!-- Statistic Content -->
+                         Statistic Content 
                         <span class="mws-stat-content">
                         	<span class="mws-stat-value">ProShop</span>
                             <span class="mws-stat-value">Orders</span>
                         </span>
         </a>
 		<a class="mws-stat" href="addVoucher.php">
-                    	<!-- Statistic Icon (edit to change icon) -->
+                    	 Statistic Icon (edit to change icon) 
                     	<span class="mws-stat-icon icol32-gift-add"></span>
                         
-                        <!-- Statistic Content -->
+                         Statistic Content 
                         <span class="mws-stat-content">
                         	<span class="mws-stat-value">Voucher</span>
                             <span class="mws-stat-value"></span>
                         </span>
-        </a>
+        </a>-->
 		
 		
 		
