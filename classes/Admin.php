@@ -453,10 +453,10 @@ class Admin extends Dbop{
         $this->mail->FromName = FROM_EMAIL_NAME;
         $this->mail->addReplyTo(SMTP_REPLY_EMAIL_ID, SMTP_REPLY_NAME);
         $this->mail->mailCC =  explode(",", MAIL_CC);
-//            foreach($this->mail->mailCC as $cc) {
-//                error_log(trim($cc));
-//                $this->mail->addCC(trim($cc));
-//            }
+            foreach($this->mail->mailCC as $cc) {
+                error_log(trim($cc));
+                $this->mail->addCC(trim($cc));
+            }
             $this->mail->isHTML(true);  
             $this->mail->Subject = $subject;
             $this->mail->Body    = $body;

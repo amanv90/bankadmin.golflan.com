@@ -6,8 +6,7 @@
  * and open the template in the editor.
  */
 
-DEFINE("FROM_EMAIL_ID",'customer.care@golflan.com');
-DEFINE("MAIL_CC",'dhruv@golflan.com, neha.sharma@golflan.com, manish.rastogi@golflan.com, anjani.mishra@golflan.com');
+
 //DEFINE("MAIL_CC",'');
 
 // --------[INDIA]------------
@@ -34,3 +33,16 @@ define('BOOKING_STATUS_PENDING', 0);
 define('BOOKING_STATUS_CONFIRMED', 1);
 define('BOOKING_STATUS_CANCELLED_BY_ADMIN', 2);
 define('BOOKING_STATUS_CANCELLED_BY_USER', 3);
+
+DEFINE("FROM_EMAIL_ID",'customer.care@golflan.com');
+DEFINE("MAIL_CC",'neha.sharma@golflan.com, manish.rastogi@golflan.com, anjani.mishra@golflan.com');
+
+DEFINE('SMTP_HOST', 'smtp.gmail.com');
+DEFINE('SMTP_AUTH', true);
+DEFINE('SMTP_USERNAME', 'customer.care@golflan.com');
+DEFINE('SMTP_PASSWORD', 'golflan@2013@17');
+DEFINE('SMTP_SECURE', 'tls');
+DEFINE('SMTP_PORT', 587);
+DEFINE('FROM_EMAIL_NAME', 'Golflan Customer Care');
+DEFINE('SMTP_REPLY_EMAIL_ID', 'customer.care@golflan.com');
+DEFINE('SMTP_REPLY_NAME', 'Information');
