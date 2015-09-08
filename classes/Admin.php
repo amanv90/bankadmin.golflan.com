@@ -80,7 +80,6 @@ class Admin extends Dbop{
             {
                 foreach ($value_2 as $value3){
                     if ($value3 == $key_value){
-                        error_log("test::::::::;    ".$key_value);
                         return $key_value;
                     }
                 }
@@ -110,7 +109,7 @@ class Admin extends Dbop{
         $query = "select gcb.*, gcm.GCName confirmedGC, gcm1.GCName GC1, gcm2.GCName GC2, icm.EMAIL ,icm.Login_Name from golfCourseMaster gcm1, golfCourseMaster gcm2,  compGolfCourseBook gcb 
                    left join webUserMaster icm on gcb.User_ID = icm.USER_ID
                    Left join golfCourseMaster gcm on gcb.confirm_GID = gcm.GID 
-                   where gcb.GID_OPT1 = gcm1.GID AND gcb.GID_OPT2 = gcm2.GID AND gcb.bookingStatus = 'Pending';";
+                   where gcb.GID_OPT1 = gcm1.GID AND gcb.GID_OPT2 = gcm2.GID AND gcb.bookingStatus = 0;";
         $valArr = $this->select($query, array(), $this->dbConn);
         return $valArr;
     }
@@ -304,15 +303,15 @@ class Admin extends Dbop{
     }
     
    public function updateComplimentaryStatus($action, $GID_ID, $Book_ID){
-        //$confirmed = 'Confirmed';
+        $confirmed = BOOKING_STATUS_CONFIRMED;
         $query = "UPDATE compGolfCourseBook set bookingStatus = ? , confirm_GID = ? WHERE BookID = ? ";
-        return $this->update($query, array($action, $GID_ID, $Book_ID), $this->dbConn);
+        return $this->update($query, array($confirmed, $GID_ID, $Book_ID), $this->dbConn);
     }
     
    public function updateComplimentaryCancelStatus($action, $Book_ID){
-        //$confirmed = 'Confirmed';
+        $confirmed = BOOKING_STATUS_CANCELLED_BY_ADMIN;
         $query = "UPDATE compGolfCourseBook set bookingStatus = ? , confirm_GID = 0 WHERE BookID = ? ";
-        return $this->update($query, array($action, $Book_ID), $this->dbConn);
+        return $this->update($query, array($confirmed, $Book_ID), $this->dbConn);
     }
     
     
