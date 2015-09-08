@@ -131,7 +131,7 @@
             <tr>
                 <?php  if((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])==0)) {?> 
 							<!--<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Pending"><button class="btn btn-revert">Pending</button></a>--> &nbsp;&nbsp;&nbsp;
-							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Cancelled"><button class="btn btn-danger">Revert</button></a>&nbsp;&nbsp;&nbsp;
+							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&action=Cancelled&service=<?php echo $id;?>"><button class="btn btn-danger">Revert</button></a>&nbsp;&nbsp;&nbsp;
 							<a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&service=<?php echo $id;?>&action=Confirmed&gid=<?php echo $booking_details['GID_OPT1']; ?>"><button class="btn btn-success">Confirm GID1</button></a>&nbsp;&nbsp;&nbsp;
                                                         <a href="complimentry_update_status.php?Book_ID=<?php echo $booking_details['BookID']?>&service=<?php echo $id;?>&action=Confirmed&gid=<?php echo $booking_details['GID_OPT2']; ?>"><button class="btn btn-success">Confirm GID2</button></a>
 
