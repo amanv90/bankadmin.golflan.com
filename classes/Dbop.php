@@ -28,7 +28,7 @@ class Dbop {
 	 * @return void
 	 */
 	public function getObject($database) {
-            error_log("test________DBOP".$database);
+            //error_log("test________DBOP".$database);
            $this->connection = DbConn::getDBObject($database);
 	}
 

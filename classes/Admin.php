@@ -329,6 +329,24 @@ class Admin extends Dbop{
         return $valArr;
     }
     
+    public function getUsersIDByBookID($bookID) {
+        $query = "select USER_ID, confirm_GID, dateOfPlay, slotOfPlay from compGolfCourseBook where BookID = ?; ";
+	$valArr = $this->select($query, array($bookID), $this->dbConn);
+        return $valArr;
+    }
+    
+    public function getUsersDetails($user_id) {
+        $query = "select Email from webUserMaster where User_ID = ?; ";
+	$valArr = $this->select($query, array($user_id), $this->dbConn);
+        return $valArr;
+    }
+    
+    public function getGolfCourseName($gid) {
+        $query = "select GCName, City from golfCourseMaster where GID = ?; ";
+	$valArr = $this->select($query, array($gid), $this->dbConn);
+        return $valArr;
+    }
+    
     public function checkCardExist($card_number){
         $query = "select count(1) as count from webUserCards  where CardNo = ?;";
         $valArr = $this->select($query, array($card_number), $this->dbConn);
@@ -417,8 +435,32 @@ class Admin extends Dbop{
         return $valArr;
     }
 	
-	function updateproShopTrans($shipStatus,$Renewed_On,$OrderID){
+	PUBLIC function updateproShopTrans($shipStatus,$Renewed_On,$OrderID){
         $query = "UPDATE proShopTrans set shipStatus = '".$shipStatus."',shipDate = '".$Renewed_On."' WHERE orderID = '".$OrderID."'";
         return $this->update($query, array($shipStatus,$Renewed_On,$OrderID), $this->dbConn);
+    }
+    
+    public function sendMail($subject, $body, $to){
+        $this->mail = new PHPMailer();
+        $this->mail->isSMTP();                                      // Set mailer to use SMTP
+        $this->mail->Host = SMTP_HOST;  // Specify main and backup SMTP servers
+        $this->mail->SMTPAuth = SMTP_AUTH;                               // Enable SMTP authentication
+        $this->mail->Username = SMTP_USERNAME;              // SMTP username
+        $this->mail->Password = SMTP_PASSWORD;                           // SMTP password
+        $this->mail->SMTPSecure = SMTP_SECURE;                            // Enable TLS encryption, `ssl` also accepted
+        $this->mail->Port = SMTP_PORT;                                    // TCP port to connect to
+        $this->mail->From = FROM_EMAIL_ID;
+        $this->mail->FromName = FROM_EMAIL_NAME;
+        $this->mail->addReplyTo(SMTP_REPLY_EMAIL_ID, SMTP_REPLY_NAME);
+        $this->mail->mailCC =  explode(",", MAIL_CC);
+//            foreach($this->mail->mailCC as $cc) {
+//                error_log(trim($cc));
+//                $this->mail->addCC(trim($cc));
+//            }
+            $this->mail->isHTML(true);  
+            $this->mail->Subject = $subject;
+            $this->mail->Body    = $body;
+            $this->mail->addAddress($to); // Add a recipient
+            $this->mail->send();
     }
 }

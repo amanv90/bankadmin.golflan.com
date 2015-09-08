@@ -35,8 +35,7 @@ final class DbConn{
 	 */
 	public static function getDBObject($database){
 		if(empty(self::$connections[$database])){
-                    error_log("teest___________".print_r($database,1));
-			self::$connections[$database] = self::createDBObject($database);
+                    	self::$connections[$database] = self::createDBObject($database);
 			mysqli_set_charset(self::$connections[$database], 'utf8'); 
 		}
 		return self::$connections[$database];
