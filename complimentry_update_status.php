@@ -11,8 +11,7 @@
 
 	$Book_ID = $_GET['Book_ID'];
         $action = $_GET['action'];
-        
-        
+  
     if ($action == Confirmed) {    
         $GID_ID = $_GET['gid'];
 	$updateComplimentaryStatus = $admin->updateComplimentaryStatus($action, $GID_ID, $Book_ID);
@@ -43,7 +42,7 @@
         //
         $UserID = $admin->getUsersIDByBookID($Book_ID);
         $UserDetails = $admin->getUsersDetails($UserID[0]['USER_ID']);
-            $to = $userDetails['Email'];
+            $to = $UserDetails[0]['Email'];
             $subject = "Your Golf Game Request is Cancelled";
             $template = 'cancellation.html';
             if (file_exists("email_templates/$template")) {
