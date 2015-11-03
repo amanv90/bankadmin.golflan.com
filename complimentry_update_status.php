@@ -19,7 +19,7 @@
         $UserDetails = $admin->getUsersDetails($UserID[0]['USER_ID']);
         $confirmGC = $admin->getGolfCourseName($UserID[0]['confirm_GID']);
             $to = $UserDetails[0]['Email'];
-            $subject = "Your Golf Game Request is Confirmed";
+            $subject = "Your Coaching session request is confirmed.";
             $template = 'booking.html';
             if (file_exists("email_templates/$template")) {
                 $tpl_name = "email_templates/$template";
