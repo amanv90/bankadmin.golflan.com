@@ -11,6 +11,7 @@
 
 	$Book_ID = $_GET['Book_ID'];
         $action = $_GET['action'];
+        $bookingType = $_GET['booking_type'];
   
     if ($action == Confirmed) {    
         $GID_ID = $_GET['gid'];
@@ -19,12 +20,21 @@
         $UserDetails = $admin->getUsersDetails($UserID[0]['USER_ID']);
         $confirmGC = $admin->getGolfCourseName($UserID[0]['confirm_GID']);
             $to = $UserDetails[0]['Email'];
-            $subject = "Your Coaching session request is confirmed.";
+            $subject = "";
+            $congoMessage = "";
+            if($bookingType == PLAY_BOOKING_TYPE){
+                $subject = "Your Golf Game Request is Confirmed.";
+                $congoMessage = "Your Golf Game is confirmed.";
+            }else if($bookingType == LEARN_BOOKING_TYPE){
+                $subject = "Your Coaching session request is confirmed.";
+                $congoMessage = "Your Coaching session request is confirmed.";
+            }
             $template = 'booking.html';
             if (file_exists("email_templates/$template")) {
                 $tpl_name = "email_templates/$template";
                 $buffer = file_get_contents($tpl_name);
                 $html = $buffer;
+                $html = str_replace("#CONGO_MESSAGE#", $congoMessage, $html);
                 $html = str_replace("#BOOKING_ID#", $Book_ID, $html);
                 $html = str_replace("#GC_NAME#", $confirmGC[0]['GCName'], $html);
                 $html = str_replace("#GC_CITY#", $confirmGC[0]['City'], $html);

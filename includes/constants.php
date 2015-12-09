@@ -46,3 +46,7 @@ DEFINE('SMTP_PORT', 587);
 DEFINE('FROM_EMAIL_NAME', 'Golflan Customer Care');
 DEFINE('SMTP_REPLY_EMAIL_ID', 'customer.care@golflan.com');
 DEFINE('SMTP_REPLY_NAME', 'Information');
+
+//---------- Booking Type ----------------
+DEFINE("PLAY_BOOKING_TYPE", 0);
+DEFINE("LEARN_BOOKING_TYPE", 1);
