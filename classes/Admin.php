@@ -144,6 +144,32 @@ class Admin extends Dbop{
         return $valArr;
     }
 	
+	public function getComplimentaryBookingsSlotOfPlayByBookID($Book_ID,$slotTime){
+		$strtotime = strtotime($slotTime);
+		$mysql_time = date('H:i:s',$strtotime);
+        $query = "UPDATE compGolfCourseBook set slotOfPlay = '".$mysql_time."' WHERE BookID = '".$Book_ID."'";
+        return $this->update($query, array($Book_ID,$time), $this->dbConn);
+    
+    }
+	
+	public function setGolfCourseMaster(){
+        $query = "SELECT * FROM golfCourseMaster";
+        $valArr = $this->select($query, array(), $this->dbConn);
+        return $valArr;
+    }
+	
+	public function getComplimentaryBookingsSlotGC($Book_ID,$GID){
+		//$strtotime = strtotime($slotTime);
+		//$mysql_time = date('H:i:s',$strtotime);
+        $query = "UPDATE compGolfCourseBook set GID_OPT1 = '".$GID."' WHERE BookID = '".$Book_ID."'";
+        return $this->update($query, array($Book_ID,$GID), $this->dbConn);
+    
+    }
+	public function getComplimentaryBookingsSlotDate($Book_ID,$dateofPlay){
+		$query = "UPDATE compGolfCourseBook set dateOfPlay = '".$dateofPlay."' WHERE BookID = '".$Book_ID."'";
+        return $this->update($query, array($Book_ID,$dateofPlay), $this->dbConn);
+    
+    }
 	public function getProShopAttributePriceMapByPriceMapID($priceMapID){
         $query = "SELECT * FROM proShopAttributePriceMap WHERE priceMapID LIKE '".$priceMapID."'";
         $valArr = $this->select($query, array(), $this->dbConn);
