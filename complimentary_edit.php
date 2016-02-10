@@ -8,6 +8,7 @@
     include 'router.php';
     include 'admin_header.php';
     $id = $_GET['service'];
+	//echo $id;
     $active ="complimentary";
     $url_array = unserialize(SERVICE_ARRAY);
     $key = array_search($id, $url_array);
@@ -42,7 +43,7 @@
 
             <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
-                    	<span>complimentary bookings Details</span>
+                    	<span>Complimentary bookings Details</span>
                     </div>
                     <div class="mws-panel-body no-padding">
                     	<form action="form_layouts.html" class="mws-form" style="padding-left:2%;padding-top: 1%">
@@ -117,16 +118,58 @@
 
         <tr>
           <td scope="row"><?PHP if(isset($booking_details['BookID'])){echo $booking_details['BookID'];}?></td>
-          <td><?php if(isset($booking_details['dateOfPlay'])){echo $booking_details['dateOfPlay'];}?></td>
-          <td><?php if(isset($booking_details['slotOfPlay'])){echo $booking_details['slotOfPlay'].',';}?></td>
-          <td><?php if(isset($booking_details['GC1'])){echo $booking_details['GC1'].',';}?></td>
+          <td><?php if(isset($booking_details['dateOfPlay'])){echo $booking_details['dateOfPlay'];}?>
+			<a href="#" style="color:red;"onclick="showComment1('<?php echo $_GET['booking_ID']?>')"><u>Edit</u></a></br>
+
+					<div id="comment1-<?php echo $_GET['booking_ID']?>" style="display:none" >
+						
+
+						<form method="post" action="timeEdit.php?id=<?php echo $_GET['booking_ID']?>&service=<?php echo $id; ?>&name=dateEdit">
+							<input type="text" class="" name="comment1" required>
+							<!--<textarea class="mws-tpicker large" style="height:35px; width:70px;" name="comment"></textarea>-->
+							<input type="submit" value="Update"/><input value="Hide" type="button" onclick="hideComment1('<?php echo $_GET['booking_ID']?>')">
+						</form>
+					</div>
+			</td>
+           <td width="20%"><?php if(isset($booking_details['slotOfPlay'])){echo $booking_details['slotOfPlay'].',';}?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <a href="#" style="color:red;"onclick="showComment('<?php echo $_GET['booking_ID']?>')"><u>Edit</u></a></br>
+
+					<div id="comment-<?php echo $_GET['booking_ID']?>" style="display:none" >
+						
+
+						<form method="post" action="timeEdit.php?id=<?php echo $_GET['booking_ID']?>&service=<?php echo $id; ?>&&name=CE">
+							<input type="text" class="mws-tpicker large" name="comment" required>
+							<!--<textarea class="mws-tpicker large" style="height:35px; width:70px;" name="comment"></textarea>-->
+							<input type="submit" value="Update"/><input value="Hide" type="button" onclick="hideComment('<?php echo $_GET['booking_ID']?>')">
+						</form>
+					</div>
+			</td>
+          <td><?php if(isset($booking_details['GC1'])){echo $booking_details['GC1'].',';}?>
+			 <a href="#" style="color:red;"onclick="showComment2('<?php echo $_GET['booking_ID']?>')"><u>Edit</u></a></br>
+
+					<div id="comment2-<?php echo $_GET['booking_ID']?>" style="display:none" >
+						
+
+						<form method="post" action="timeEdit.php?id=<?php echo $_GET['booking_ID']?>&service=<?php echo $id; ?>&name=GCEdit">
+<select style="width: 160px;" name="comment2" required> <option value="" >--Choose Category--</option>
+																	<?php $setGolfCourseMaster = $admin->setGolfCourseMaster(); 
+																		foreach ($setGolfCourseMaster as $line) {?> 
+																	
+																		<option value="<?php echo $line['GID'];?>"> <?php echo $line['GCName'];?> </option>   <?php } ?> 
+																</select>							<!--<textarea class="mws-tpicker large" style="height:35px; width:70px;" name="comment"></textarea>-->
+							<input type="submit" value="Update"/><input value="Hide" type="button" onclick="hideComment2('<?php echo $_GET['booking_ID']?>')">
+						</form>
+					</div>
+			
+			
+			</td>
           <td><?php if(isset($booking_details['GC2'])){echo $booking_details['GC2'].',';}?></td>
           <td>1</td>
           <td>-</td>
         </tr>
         <tr>
           <td colspan="4" rowspan="2" scope="row" class="table table-responsive" >&nbsp;</td>
-          <td>Order Status</td>
+          <td></td>
           <td><table width="269" border="0" cellpadding="10">
             <tr>
                 <?php  if((isset($booking_details['bookingStatus']) && strtolower($booking_details['bookingStatus'])==0)) {?> 
@@ -160,4 +203,32 @@
             <!-- Inner Container End -->
 
  <?php include 'admin_footer.php';?>
+<script type="text/javascript">
+    function hideComment2(id2) {
+        document.getElementById('comment2-' + id2).style.display = 'none';
+    }
+
+    function showComment2(id2) {
+        document.getElementById('comment2-' + id2).style.display = 'block';
+    }
+</script>	
+		<script type="text/javascript">
+    function hideComment1(id1) {
+        document.getElementById('comment1-' + id1).style.display = 'none';
+    }
+
+    function showComment1(id1) {
+        document.getElementById('comment1-' + id1).style.display = 'block';
+    }
+</script>	
+<script type="text/javascript">
+    function hideComment(id) {
+        document.getElementById('comment-' + id).style.display = 'none';
+    }
+
+    function showComment(id) {
+        document.getElementById('comment-' + id).style.display = 'block';
+    }
+</script>
+ 
  
